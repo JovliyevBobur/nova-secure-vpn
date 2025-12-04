@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Shield } from "lucide-react";
+import { Menu, X, Shield, LayoutDashboard, Download } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,11 +48,20 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <Button variant="hero" onClick={() => scrollToSection("#pricing")}>
-              Get Started
-            </Button>
+          {/* CTA Buttons */}
+          <div className="hidden md:flex items-center gap-2">
+            <Link to="/dashboard">
+              <Button variant="outline" size="sm" className="gap-2">
+                <LayoutDashboard className="w-4 h-4" />
+                Dashboard
+              </Button>
+            </Link>
+            <Link to="/install">
+              <Button variant="hero" size="sm" className="gap-2">
+                <Download className="w-4 h-4" />
+                Quraşdır
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -76,9 +86,20 @@ const Navbar = () => {
                   {link.label}
                 </button>
               ))}
-              <Button variant="hero" className="mt-2" onClick={() => scrollToSection("#pricing")}>
-                Get Started
-              </Button>
+              <div className="flex flex-col gap-2 mt-2 pt-2 border-t border-border">
+                <Link to="/dashboard" onClick={() => setIsOpen(false)}>
+                  <Button variant="outline" className="w-full gap-2">
+                    <LayoutDashboard className="w-4 h-4" />
+                    Dashboard
+                  </Button>
+                </Link>
+                <Link to="/install" onClick={() => setIsOpen(false)}>
+                  <Button variant="hero" className="w-full gap-2">
+                    <Download className="w-4 h-4" />
+                    Tətbiqi Quraşdır
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         )}

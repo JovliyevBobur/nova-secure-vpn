@@ -1,68 +1,71 @@
 import { Button } from "@/components/ui/button";
 import { Check, X } from "lucide-react";
-
-const plans = [
-  {
-    name: "Free",
-    price: "$0",
-    period: "forever",
-    description: "Basic protection for casual users",
-    features: [
-      { text: "1 Device", included: true },
-      { text: "3 Server Locations", included: true },
-      { text: "Basic Encryption", included: true },
-      { text: "Limited Bandwidth (500MB/day)", included: true },
-      { text: "Unlimited Data", included: false },
-      { text: "Priority Support", included: false },
-    ],
-    buttonVariant: "outline" as const,
-    popular: false,
-  },
-  {
-    name: "Standard",
-    price: "$9.99",
-    period: "/month",
-    description: "Complete protection for individuals",
-    features: [
-      { text: "5 Devices", included: true },
-      { text: "30+ Server Locations", included: true },
-      { text: "AES-256 Encryption", included: true },
-      { text: "Unlimited Bandwidth", included: true },
-      { text: "Ad & Malware Blocker", included: true },
-      { text: "Email Support", included: true },
-    ],
-    buttonVariant: "hero" as const,
-    popular: true,
-  },
-  {
-    name: "Premium",
-    price: "$14.99",
-    period: "/month",
-    description: "Maximum security for power users",
-    features: [
-      { text: "Unlimited Devices", included: true },
-      { text: "50+ Server Locations", included: true },
-      { text: "AES-256 + WireGuard", included: true },
-      { text: "Unlimited Bandwidth", included: true },
-      { text: "Dedicated IP Option", included: true },
-      { text: "24/7 Priority Support", included: true },
-    ],
-    buttonVariant: "premium" as const,
-    popular: false,
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Pricing = () => {
+  const { t } = useLanguage();
+
+  const plans = [
+    {
+      name: t('pricing.free'),
+      price: "$0",
+      period: t('pricing.forever'),
+      description: t('pricing.free.desc'),
+      features: [
+        { text: `1 ${t('pricing.device')}`, included: true },
+        { text: `3 ${t('pricing.serverLocations')}`, included: true },
+        { text: t('pricing.basicEncryption'), included: true },
+        { text: t('pricing.limitedBandwidth'), included: true },
+        { text: t('pricing.unlimitedData'), included: false },
+        { text: t('pricing.prioritySupport'), included: false },
+      ],
+      buttonVariant: "outline" as const,
+      popular: false,
+    },
+    {
+      name: t('pricing.standard'),
+      price: "$9.99",
+      period: t('pricing.month'),
+      description: t('pricing.standard.desc'),
+      features: [
+        { text: `5 ${t('pricing.devices')}`, included: true },
+        { text: `30+ ${t('pricing.serverLocations')}`, included: true },
+        { text: t('pricing.aes256'), included: true },
+        { text: t('pricing.unlimitedBandwidth'), included: true },
+        { text: t('pricing.adBlocker'), included: true },
+        { text: t('pricing.emailSupport'), included: true },
+      ],
+      buttonVariant: "hero" as const,
+      popular: true,
+    },
+    {
+      name: t('pricing.premium'),
+      price: "$14.99",
+      period: t('pricing.month'),
+      description: t('pricing.premium.desc'),
+      features: [
+        { text: `${t('pricing.unlimited')} ${t('pricing.devices')}`, included: true },
+        { text: `50+ ${t('pricing.serverLocations')}`, included: true },
+        { text: t('pricing.wireguard'), included: true },
+        { text: t('pricing.unlimitedBandwidth'), included: true },
+        { text: t('pricing.dedicatedIP'), included: true },
+        { text: t('pricing.247Support'), included: true },
+      ],
+      buttonVariant: "premium" as const,
+      popular: false,
+    },
+  ];
+
   return (
     <section id="pricing" className="py-24 bg-secondary/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Simple, Transparent Pricing
+            {t('pricing.title')}
           </h2>
           <p className="max-w-2xl mx-auto text-lg text-muted-foreground">
-            Choose the plan that fits your needs. Cancel anytime.
+            {t('pricing.subtitle')}
           </p>
         </div>
 
@@ -80,7 +83,7 @@ const Pricing = () => {
               {/* Popular Badge */}
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-accent text-accent-foreground text-sm font-semibold">
-                  Most Popular
+                  {t('pricing.popular')}
                 </div>
               )}
 
@@ -116,7 +119,7 @@ const Pricing = () => {
 
               {/* CTA Button */}
               <Button variant={plan.buttonVariant} size="lg" className="w-full">
-                {plan.name === "Free" ? "Start Free" : "Get Started"}
+                {plan.name === t('pricing.free') ? t('pricing.startFree') : t('pricing.getStarted')}
               </Button>
             </div>
           ))}
@@ -124,7 +127,7 @@ const Pricing = () => {
 
         {/* Money Back Guarantee */}
         <p className="text-center mt-12 text-muted-foreground">
-          ✓ 30-day money-back guarantee on all paid plans
+          ✓ {t('pricing.guarantee')}
         </p>
       </div>
     </section>

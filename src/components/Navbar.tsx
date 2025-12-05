@@ -2,17 +2,20 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Shield, LayoutDashboard, Download } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSelector from "./LanguageSelector";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useLanguage();
 
   const navLinks = [
-    { label: "Home", href: "#home" },
-    { label: "Features", href: "#features" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "Download", href: "#download" },
-    { label: "FAQ", href: "#faq" },
-    { label: "Support", href: "#contact" },
+    { label: t('nav.home'), href: "#home" },
+    { label: t('nav.features'), href: "#features" },
+    { label: t('nav.pricing'), href: "#pricing" },
+    { label: t('nav.download'), href: "#download" },
+    { label: t('nav.faq'), href: "#faq" },
+    { label: t('nav.support'), href: "#contact" },
   ];
 
   const scrollToSection = (href: string) => {
@@ -50,27 +53,31 @@ const Navbar = () => {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-2">
+            <LanguageSelector />
             <Link to="/dashboard">
               <Button variant="outline" size="sm" className="gap-2">
                 <LayoutDashboard className="w-4 h-4" />
-                Dashboard
+                {t('nav.dashboard')}
               </Button>
             </Link>
             <Link to="/install">
               <Button variant="hero" size="sm" className="gap-2">
                 <Download className="w-4 h-4" />
-                Quraşdır
+                {t('nav.install')}
               </Button>
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 rounded-lg hover:bg-secondary transition-colors"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          <div className="flex md:hidden items-center gap-2">
+            <LanguageSelector />
+            <button
+              className="p-2 rounded-lg hover:bg-secondary transition-colors"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -90,13 +97,13 @@ const Navbar = () => {
                 <Link to="/dashboard" onClick={() => setIsOpen(false)}>
                   <Button variant="outline" className="w-full gap-2">
                     <LayoutDashboard className="w-4 h-4" />
-                    Dashboard
+                    {t('nav.dashboard')}
                   </Button>
                 </Link>
                 <Link to="/install" onClick={() => setIsOpen(false)}>
                   <Button variant="hero" className="w-full gap-2">
                     <Download className="w-4 h-4" />
-                    Tətbiqi Quraşdır
+                    {t('nav.install')}
                   </Button>
                 </Link>
               </div>

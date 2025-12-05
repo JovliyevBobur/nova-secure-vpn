@@ -1,13 +1,15 @@
 import { Shield } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   const footerLinks = {
-    Product: ["Features", "Pricing", "Download", "FAQ"],
-    Company: ["About Us", "Blog", "Careers", "Press"],
-    Support: ["Help Center", "Contact", "Status", "Terms"],
-    Legal: ["Privacy Policy", "Cookie Policy", "GDPR", "Licenses"],
+    [t('footer.product')]: [t('nav.features'), t('nav.pricing'), t('nav.download'), t('nav.faq')],
+    [t('footer.company')]: [t('footer.aboutUs'), t('footer.blog'), t('footer.careers'), t('footer.press')],
+    [t('footer.support')]: [t('footer.helpCenter'), t('footer.contact'), t('footer.status'), t('footer.terms')],
+    [t('footer.legal')]: [t('footer.privacyPolicy'), t('footer.cookiePolicy'), t('footer.gdpr'), t('footer.licenses')],
   };
 
   return (
@@ -23,7 +25,7 @@ const Footer = () => {
               <span className="font-bold text-xl">SecureVPN</span>
             </div>
             <p className="text-primary-foreground/70 text-sm leading-relaxed">
-              Your trusted partner for online privacy and security.
+              {t('footer.description')}
             </p>
           </div>
 
@@ -50,17 +52,17 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-primary-foreground/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-primary-foreground/70">
-            © {currentYear} SecureVPN. All rights reserved.
+            © {currentYear} SecureVPN. {t('footer.rights')}
           </p>
           <div className="flex items-center gap-6">
             <a href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-              Privacy
+              {t('footer.privacy')}
             </a>
             <a href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-              Terms
+              {t('footer.terms')}
             </a>
             <a href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-              Cookies
+              {t('footer.cookies')}
             </a>
           </div>
         </div>

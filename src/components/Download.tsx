@@ -1,55 +1,58 @@
 import { Button } from "@/components/ui/button";
 import { Monitor, Apple, Smartphone, Download } from "lucide-react";
-
-const downloads = [
-  {
-    platform: "Windows",
-    icon: Monitor,
-    version: "v3.2.1",
-    description: "Windows 10/11 64-bit",
-    buttonText: "Download for Windows",
-  },
-  {
-    platform: "macOS",
-    icon: Apple,
-    version: "v3.2.1",
-    description: "macOS 12.0 or later",
-    buttonText: "Download for Mac",
-  },
-  {
-    platform: "Linux",
-    icon: Monitor,
-    version: "v3.2.1",
-    description: "Ubuntu, Debian, Fedora",
-    buttonText: "Download for Linux",
-  },
-  {
-    platform: "Android",
-    icon: Smartphone,
-    version: "v3.2.0",
-    description: "Android 8.0 or later",
-    buttonText: "Download APK",
-  },
-  {
-    platform: "iOS",
-    icon: Smartphone,
-    version: "v3.2.0",
-    description: "iOS 14.0 or later",
-    buttonText: "App Store",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const DownloadSection = () => {
+  const { t } = useLanguage();
+
+  const downloads = [
+    {
+      platform: t('download.windows'),
+      icon: Monitor,
+      version: "v3.2.1",
+      description: t('download.windows.desc'),
+      buttonText: t('download.windows.btn'),
+    },
+    {
+      platform: t('download.macos'),
+      icon: Apple,
+      version: "v3.2.1",
+      description: t('download.macos.desc'),
+      buttonText: t('download.macos.btn'),
+    },
+    {
+      platform: t('download.linux'),
+      icon: Monitor,
+      version: "v3.2.1",
+      description: t('download.linux.desc'),
+      buttonText: t('download.linux.btn'),
+    },
+    {
+      platform: t('download.android'),
+      icon: Smartphone,
+      version: "v3.2.0",
+      description: t('download.android.desc'),
+      buttonText: t('download.android.btn'),
+    },
+    {
+      platform: t('download.ios'),
+      icon: Smartphone,
+      version: "v3.2.0",
+      description: t('download.ios.desc'),
+      buttonText: t('download.ios.btn'),
+    },
+  ];
+
   return (
     <section id="download" className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Download SecureVPN
+            {t('download.title')}
           </h2>
           <p className="max-w-2xl mx-auto text-lg text-muted-foreground">
-            Get started in minutes. Available on all major platforms.
+            {t('download.subtitle')}
           </p>
         </div>
 
@@ -84,10 +87,10 @@ const DownloadSection = () => {
         <div className="mt-16 text-center">
           <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-secondary border border-border">
             <span className="text-sm text-muted-foreground">
-              Need help installing? Check our
+              {t('download.help')}
             </span>
             <a href="#faq" className="text-sm font-medium text-accent hover:underline">
-              Installation Guide
+              {t('download.guide')}
             </a>
           </div>
         </div>

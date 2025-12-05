@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Shield, Lock, Globe, ChevronRight } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const Hero = () => {
+  const { t } = useLanguage();
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -36,28 +39,28 @@ const Hero = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 border border-accent/30 mb-8 animate-fade-in">
             <Shield className="h-4 w-4 text-accent" />
-            <span className="text-sm font-medium text-primary-foreground">Military-Grade Encryption</span>
+            <span className="text-sm font-medium text-primary-foreground">{t('hero.badge')}</span>
           </div>
 
           {/* Main Heading */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground mb-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-            Secure Your Digital
-            <span className="block text-gradient mt-2">Privacy Today</span>
+            {t('hero.title1')}
+            <span className="block text-gradient mt-2">{t('hero.title2')}</span>
           </h1>
 
           {/* Subtitle */}
           <p className="max-w-2xl mx-auto text-lg sm:text-xl text-primary-foreground/80 mb-10 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-            Browse the internet safely with our lightning-fast VPN. Available on all your devices — Windows, Mac, Linux, Android, and iOS.
+            {t('hero.subtitle')}
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 animate-fade-in" style={{ animationDelay: "0.3s" }}>
             <Button variant="hero" size="xl" onClick={() => scrollToSection("#pricing")}>
-              Start Free Trial
+              {t('hero.cta.trial')}
               <ChevronRight className="h-5 w-5" />
             </Button>
             <Button variant="heroOutline" size="xl" onClick={() => scrollToSection("#features")}>
-              Learn More
+              {t('hero.cta.learn')}
             </Button>
           </div>
 
@@ -65,15 +68,15 @@ const Hero = () => {
           <div className="flex flex-wrap justify-center items-center gap-8 text-primary-foreground/70 animate-fade-in" style={{ animationDelay: "0.4s" }}>
             <div className="flex items-center gap-2">
               <Lock className="h-5 w-5 text-accent" />
-              <span className="text-sm">No-Log Policy</span>
+              <span className="text-sm">{t('hero.trust.nolog')}</span>
             </div>
             <div className="flex items-center gap-2">
               <Globe className="h-5 w-5 text-accent" />
-              <span className="text-sm">50+ Countries</span>
+              <span className="text-sm">{t('hero.trust.countries')}</span>
             </div>
             <div className="flex items-center gap-2">
               <Shield className="h-5 w-5 text-accent" />
-              <span className="text-sm">AES-256 Encryption</span>
+              <span className="text-sm">{t('hero.trust.encryption')}</span>
             </div>
           </div>
         </div>

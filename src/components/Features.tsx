@@ -1,57 +1,60 @@
 import { Shield, Zap, Globe, Lock, Eye, Server, Monitor, Smartphone } from "lucide-react";
-
-const features = [
-  {
-    icon: Shield,
-    title: "Military-Grade Security",
-    description: "AES-256 encryption protects your data from hackers and surveillance.",
-  },
-  {
-    icon: Zap,
-    title: "Lightning Fast Speeds",
-    description: "Optimized servers ensure you never sacrifice speed for security.",
-  },
-  {
-    icon: Globe,
-    title: "Global Server Network",
-    description: "Connect to 50+ countries and access content from anywhere.",
-  },
-  {
-    icon: Lock,
-    title: "No-Log Policy",
-    description: "We never track, collect, or share your browsing data.",
-  },
-  {
-    icon: Eye,
-    title: "Anonymous Browsing",
-    description: "Hide your IP address and browse the web completely anonymously.",
-  },
-  {
-    icon: Server,
-    title: "Unlimited Bandwidth",
-    description: "Stream, download, and browse without any data caps.",
-  },
-];
-
-const platforms = [
-  { name: "Windows", icon: Monitor },
-  { name: "macOS", icon: Monitor },
-  { name: "Linux", icon: Monitor },
-  { name: "Android", icon: Smartphone },
-  { name: "iOS", icon: Smartphone },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Features = () => {
+  const { t } = useLanguage();
+
+  const features = [
+    {
+      icon: Shield,
+      title: t('features.security.title'),
+      description: t('features.security.desc'),
+    },
+    {
+      icon: Zap,
+      title: t('features.speed.title'),
+      description: t('features.speed.desc'),
+    },
+    {
+      icon: Globe,
+      title: t('features.global.title'),
+      description: t('features.global.desc'),
+    },
+    {
+      icon: Lock,
+      title: t('features.nolog.title'),
+      description: t('features.nolog.desc'),
+    },
+    {
+      icon: Eye,
+      title: t('features.anonymous.title'),
+      description: t('features.anonymous.desc'),
+    },
+    {
+      icon: Server,
+      title: t('features.bandwidth.title'),
+      description: t('features.bandwidth.desc'),
+    },
+  ];
+
+  const platforms = [
+    { name: "Windows", icon: Monitor },
+    { name: "macOS", icon: Monitor },
+    { name: "Linux", icon: Monitor },
+    { name: "Android", icon: Smartphone },
+    { name: "iOS", icon: Smartphone },
+  ];
+
   return (
     <section id="features" className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Why Choose SecureVPN?
+            {t('features.title')}
           </h2>
           <p className="max-w-2xl mx-auto text-lg text-muted-foreground">
-            Industry-leading features to keep you safe online
+            {t('features.subtitle')}
           </p>
         </div>
 
@@ -79,7 +82,7 @@ const Features = () => {
         {/* Platforms Section */}
         <div className="text-center">
           <h3 className="text-2xl font-bold text-foreground mb-8">
-            Available on All Your Devices
+            {t('features.platforms')}
           </h3>
           <div className="flex flex-wrap justify-center gap-6">
             {platforms.map((platform) => (

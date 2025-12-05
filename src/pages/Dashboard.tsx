@@ -1,8 +1,10 @@
 import React from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { useVPNConnection } from '@/hooks/useVPNConnection';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import LanguageSelector from '@/components/LanguageSelector';
 import { 
   Shield, 
   ShieldOff, 
@@ -22,6 +24,7 @@ import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   const { theme, toggleTheme } = useTheme();
+  const { t } = useLanguage();
   const { 
     isConnected, 
     isConnecting, 
@@ -53,11 +56,12 @@ const Dashboard = () => {
             <span className="text-xl font-bold text-foreground">SecureVPN</span>
           </Link>
           <div className="flex items-center gap-4">
+            <LanguageSelector />
             <Button variant="ghost" size="icon" onClick={toggleTheme}>
               {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </Button>
             <Link to="/">
-              <Button variant="outline" size="sm">Ana Səhifə</Button>
+              <Button variant="outline" size="sm">{t('dashboard.home')}</Button>
             </Link>
           </div>
         </div>
@@ -95,12 +99,12 @@ const Dashboard = () => {
                   </button>
 
                   <h2 className="mt-6 text-2xl font-bold text-foreground">
-                    {isConnecting ? 'Qoşulur...' : isConnected ? 'Qoşuludur' : 'Qoşulmayıb'}
+                    {isConnecting ? t('dashboard.connecting') : isConnected ? t('dashboard.connected') : t('dashboard.disconnected')}
                   </h2>
                   <p className="text-muted-foreground mt-2">
                     {isConnected && selectedServer 
                       ? `${selectedServer.flag} ${selectedServer.name}` 
-                      : 'Təhlükəsiz bağlantı üçün qoşulun'}
+                      : t('dashboard.connectSecure')}
                   </p>
 
                   {/* Quick Stats */}
@@ -109,17 +113,17 @@ const Dashboard = () => {
                       <div className="text-center">
                         <Clock className="w-5 h-5 mx-auto text-muted-foreground mb-1" />
                         <p className="text-lg font-semibold text-foreground">{formatTime(stats.connectedTime)}</p>
-                        <p className="text-xs text-muted-foreground">Vaxt</p>
+                        <p className="text-xs text-muted-foreground">{t('dashboard.time')}</p>
                       </div>
                       <div className="text-center">
                         <Download className="w-5 h-5 mx-auto text-green-500 mb-1" />
                         <p className="text-lg font-semibold text-foreground">{formatSpeed(stats.downloadSpeed)}</p>
-                        <p className="text-xs text-muted-foreground">Yükləmə</p>
+                        <p className="text-xs text-muted-foreground">{t('dashboard.download')}</p>
                       </div>
                       <div className="text-center">
                         <Upload className="w-5 h-5 mx-auto text-blue-500 mb-1" />
                         <p className="text-lg font-semibold text-foreground">{formatSpeed(stats.uploadSpeed)}</p>
-                        <p className="text-xs text-muted-foreground">Göndərmə</p>
+                        <p className="text-xs text-muted-foreground">{t('dashboard.upload')}</p>
                       </div>
                     </div>
                   )}
@@ -135,7 +139,7 @@ const Dashboard = () => {
                     <Download className="w-5 h-5 text-green-500" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Ümumi Yükləmə</p>
+                    <p className="text-sm text-muted-foreground">{t('dashboard.totalDownload')}</p>
                     <p className="text-lg font-semibold text-foreground">{formatData(stats.totalDownload)}</p>
                   </div>
                 </div>
@@ -146,7 +150,7 @@ const Dashboard = () => {
                     <Upload className="w-5 h-5 text-blue-500" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Ümumi Göndərmə</p>
+                    <p className="text-sm text-muted-foreground">{t('dashboard.totalUpload')}</p>
                     <p className="text-lg font-semibold text-foreground">{formatData(stats.totalUpload)}</p>
                   </div>
                 </div>
@@ -157,7 +161,7 @@ const Dashboard = () => {
                     <Wifi className="w-5 h-5 text-accent" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Ping</p>
+                    <p className="text-sm text-muted-foreground">{t('dashboard.ping')}</p>
                     <p className="text-lg font-semibold text-foreground">{selectedServer?.ping || 0} ms</p>
                   </div>
                 </div>
@@ -168,7 +172,7 @@ const Dashboard = () => {
                     <Lock className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Şifrələmə</p>
+                    <p className="text-sm text-muted-foreground">{t('dashboard.encryption')}</p>
                     <p className="text-lg font-semibold text-foreground">AES-256</p>
                   </div>
                 </div>
@@ -177,19 +181,19 @@ const Dashboard = () => {
 
             {/* Features */}
             <Card className="p-6 bg-card shadow-soft">
-              <h3 className="text-lg font-semibold text-foreground mb-4">Aktiv Qoruma</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-4">{t('dashboard.activeProtection')}</h3>
               <div className="grid sm:grid-cols-3 gap-4">
                 <div className="flex items-center gap-3 p-3 rounded-lg bg-green-500/5 border border-green-500/20">
                   <Shield className="w-5 h-5 text-green-500" />
-                  <span className="text-sm text-foreground">Kill Switch</span>
+                  <span className="text-sm text-foreground">{t('dashboard.killSwitch')}</span>
                 </div>
                 <div className="flex items-center gap-3 p-3 rounded-lg bg-green-500/5 border border-green-500/20">
                   <Globe className="w-5 h-5 text-green-500" />
-                  <span className="text-sm text-foreground">DNS Qoruma</span>
+                  <span className="text-sm text-foreground">{t('dashboard.dnsProtection')}</span>
                 </div>
                 <div className="flex items-center gap-3 p-3 rounded-lg bg-green-500/5 border border-green-500/20">
                   <Zap className="w-5 h-5 text-green-500" />
-                  <span className="text-sm text-foreground">Auto-Reconnect</span>
+                  <span className="text-sm text-foreground">{t('dashboard.autoReconnect')}</span>
                 </div>
               </div>
             </Card>
@@ -201,9 +205,9 @@ const Dashboard = () => {
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
                   <Server className="w-5 h-5 text-accent" />
-                  Serverlər
+                  {t('dashboard.servers')}
                 </h3>
-                <span className="text-sm text-muted-foreground">{servers.length} server</span>
+                <span className="text-sm text-muted-foreground">{servers.length} {t('dashboard.server')}</span>
               </div>
 
               <div className="space-y-2 max-h-[500px] overflow-y-auto pr-2">
@@ -235,7 +239,7 @@ const Dashboard = () => {
                           {server.ping} ms
                         </p>
                         {server.premium && (
-                          <span className="text-xs text-yellow-500 font-medium">Premium</span>
+                          <span className="text-xs text-yellow-500 font-medium">{t('dashboard.premium')}</span>
                         )}
                       </div>
                     </div>
@@ -248,7 +252,7 @@ const Dashboard = () => {
                           style={{ width: `${server.load}%` }}
                         />
                       </div>
-                      <p className="text-xs text-muted-foreground mt-1">{server.load}% yüklənmə</p>
+                      <p className="text-xs text-muted-foreground mt-1">{server.load}% {t('dashboard.load')}</p>
                     </div>
                   </button>
                 ))}
@@ -262,11 +266,11 @@ const Dashboard = () => {
                   <Zap className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground">Premium-a yüksəlin</h4>
-                  <p className="text-sm text-muted-foreground mt-1">Bütün serverlərə giriş və limitsiz sürət</p>
+                  <h4 className="font-semibold text-foreground">{t('dashboard.upgradePremium')}</h4>
+                  <p className="text-sm text-muted-foreground mt-1">{t('dashboard.upgradeDesc')}</p>
                   <Link to="/#pricing">
                     <Button variant="outline" size="sm" className="mt-3 border-yellow-500/50 text-yellow-600 hover:bg-yellow-500/10">
-                      Planları Gör <ChevronRight className="w-4 h-4 ml-1" />
+                      {t('dashboard.viewPlans')} <ChevronRight className="w-4 h-4 ml-1" />
                     </Button>
                   </Link>
                 </div>

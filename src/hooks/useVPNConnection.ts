@@ -19,18 +19,18 @@ export interface ConnectionStats {
   connectedTime: number;
 }
 
-// Mock server data
+// Mock server data with icons8 circular flags
 const mockServers: VPNServer[] = [
-  { id: '1', name: 'US - New York', country: 'United States', city: 'New York', flag: '🇺🇸', ping: 45, load: 35, premium: false },
-  { id: '2', name: 'US - Los Angeles', country: 'United States', city: 'Los Angeles', flag: '🇺🇸', ping: 78, load: 52, premium: false },
-  { id: '3', name: 'UK - London', country: 'United Kingdom', city: 'London', flag: '🇬🇧', ping: 120, load: 41, premium: false },
-  { id: '4', name: 'Germany - Frankfurt', country: 'Germany', city: 'Frankfurt', flag: '🇩🇪', ping: 95, load: 28, premium: false },
-  { id: '5', name: 'Japan - Tokyo', country: 'Japan', city: 'Tokyo', flag: '🇯🇵', ping: 180, load: 45, premium: true },
-  { id: '6', name: 'Singapore', country: 'Singapore', city: 'Singapore', flag: '🇸🇬', ping: 165, load: 38, premium: true },
-  { id: '7', name: 'Netherlands - Amsterdam', country: 'Netherlands', city: 'Amsterdam', flag: '🇳🇱', ping: 110, load: 62, premium: false },
-  { id: '8', name: 'Canada - Toronto', country: 'Canada', city: 'Toronto', flag: '🇨🇦', ping: 55, load: 44, premium: false },
-  { id: '9', name: 'Australia - Sydney', country: 'Australia', city: 'Sydney', flag: '🇦🇺', ping: 220, load: 31, premium: true },
-  { id: '10', name: 'Switzerland - Zurich', country: 'Switzerland', city: 'Zurich', flag: '🇨🇭', ping: 105, load: 22, premium: true },
+  { id: '1', name: 'US - New York', country: 'United States', city: 'New York', flag: 'https://img.icons8.com/color/48/usa-circular.png', ping: 45, load: 35, premium: false },
+  { id: '2', name: 'US - Los Angeles', country: 'United States', city: 'Los Angeles', flag: 'https://img.icons8.com/color/48/usa-circular.png', ping: 78, load: 52, premium: false },
+  { id: '3', name: 'UK - London', country: 'United Kingdom', city: 'London', flag: 'https://img.icons8.com/color/48/great-britain-circular.png', ping: 120, load: 41, premium: false },
+  { id: '4', name: 'Germany - Frankfurt', country: 'Germany', city: 'Frankfurt', flag: 'https://img.icons8.com/color/48/germany-circular.png', ping: 95, load: 28, premium: false },
+  { id: '5', name: 'Japan - Tokyo', country: 'Japan', city: 'Tokyo', flag: 'https://img.icons8.com/color/48/japan-circular.png', ping: 180, load: 45, premium: true },
+  { id: '6', name: 'Singapore', country: 'Singapore', city: 'Singapore', flag: 'https://img.icons8.com/color/48/singapore-circular.png', ping: 165, load: 38, premium: true },
+  { id: '7', name: 'Netherlands - Amsterdam', country: 'Netherlands', city: 'Amsterdam', flag: 'https://img.icons8.com/color/48/netherlands-circular.png', ping: 110, load: 62, premium: false },
+  { id: '8', name: 'Canada - Toronto', country: 'Canada', city: 'Toronto', flag: 'https://img.icons8.com/color/48/canada-circular.png', ping: 55, load: 44, premium: false },
+  { id: '9', name: 'Australia - Sydney', country: 'Australia', city: 'Sydney', flag: 'https://img.icons8.com/color/48/australia-circular.png', ping: 220, load: 31, premium: true },
+  { id: '10', name: 'Switzerland - Zurich', country: 'Switzerland', city: 'Zurich', flag: 'https://img.icons8.com/color/48/switzerland-circular.png', ping: 105, load: 22, premium: true },
 ];
 
 export const useVPNConnection = () => {

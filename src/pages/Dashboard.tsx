@@ -101,10 +101,13 @@ const Dashboard = () => {
                   <h2 className="mt-6 text-2xl font-bold text-foreground">
                     {isConnecting ? t('dashboard.connecting') : isConnected ? t('dashboard.connected') : t('dashboard.disconnected')}
                   </h2>
-                  <p className="text-muted-foreground mt-2">
-                    {isConnected && selectedServer 
-                      ? `${selectedServer.flag} ${selectedServer.name}` 
-                      : t('dashboard.connectSecure')}
+                  <p className="text-muted-foreground mt-2 flex items-center justify-center gap-2">
+                    {isConnected && selectedServer ? (
+                      <>
+                        <img src={selectedServer.flag} alt={selectedServer.country} className="w-5 h-5 rounded-full" />
+                        {selectedServer.name}
+                      </>
+                    ) : t('dashboard.connectSecure')}
                   </p>
 
                   {/* Quick Stats */}
@@ -226,7 +229,7 @@ const Dashboard = () => {
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <span className="text-2xl">{server.flag}</span>
+                        <img src={server.flag} alt={server.country} className="w-8 h-8 rounded-full object-cover" />
                         <div>
                           <p className="font-medium text-foreground text-sm">{server.name}</p>
                           <p className="text-xs text-muted-foreground">{server.city}</p>

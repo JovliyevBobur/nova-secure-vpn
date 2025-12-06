@@ -3,9 +3,9 @@ import { useLanguage, Language } from '@/contexts/LanguageContext';
 import { ChevronDown } from 'lucide-react';
 
 const languages = [
-  { code: 'en' as Language, name: 'English', flag: '🇺🇸' },
-  { code: 'ru' as Language, name: 'Русский', flag: '🇷🇺' },
-  { code: 'uz' as Language, name: "O'zbek", flag: '🇺🇿' },
+  { code: 'en' as Language, name: 'English', flag: 'https://img.icons8.com/color/48/usa-circular.png' },
+  { code: 'ru' as Language, name: 'Русский', flag: 'https://img.icons8.com/color/48/russian-federation-circular.png' },
+  { code: 'uz' as Language, name: "O'zbek", flag: 'https://img.icons8.com/color/48/uzbekistan-circular.png' },
 ];
 
 const LanguageSelector = () => {
@@ -20,7 +20,7 @@ const LanguageSelector = () => {
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary/50 border border-border hover:bg-secondary transition-colors"
       >
-        <span className="text-xl">{currentLang.flag}</span>
+        <img src={currentLang.flag} alt={currentLang.name} className="w-5 h-5 rounded-full" />
         <span className="text-sm font-medium text-foreground hidden sm:inline">{currentLang.name}</span>
         <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
@@ -43,7 +43,7 @@ const LanguageSelector = () => {
                   language === lang.code ? 'bg-accent/10 text-accent' : 'text-foreground'
                 }`}
               >
-                <span className="text-xl">{lang.flag}</span>
+                <img src={lang.flag} alt={lang.name} className="w-6 h-6 rounded-full" />
                 <span className="text-sm font-medium">{lang.name}</span>
               </button>
             ))}
